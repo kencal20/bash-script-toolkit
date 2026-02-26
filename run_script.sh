@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 
-read -p "Specify Path of Script to be run: " SCRIPT_PATH
+# colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${GREEN}=== Run Script ===${NC}"
+
+read -p $'Specify path of script to run:\n> ' SCRIPT_PATH
 
 if [[ -z "${SCRIPT_PATH}" ]]; then
-  echo "Input for the file is empty"
-  exit
+  echo -e "${RED}No input provided.${NC}"
+  exit 1
 fi
 
 if [[ -f "${SCRIPT_PATH}" ]]; then
-  echo "${SCRIPT_PATH} is running .........."
-  ./"${SCRIPT_PATH}"
+  echo -e "${YELLOW}Running ${SCRIPT_PATH}...${NC}"
+  ."${SCRIPT_PATH}"
 else
-  echo "${SCRIPT_PATH} file specified is invalid"
-  exit
+  echo -e "${RED}'${SCRIPT_PATH}' is not a valid file.${NC}"
+  exit 1
 fi

@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 
-echo Specify name/path of script to debug
+# color definitions
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+echo -e "${GREEN}=== Debug Script ===${NC}"
+echo -n "Enter name or path of script to debug: "
 read SCRIPT_PATH
 
 if [[ -d "${SCRIPT_PATH}" ]]; then
-  echo "filepath specified ${SCRIPT_PATH} is that of a directory, please try again later"
+  echo -e "${RED}The path '${SCRIPT_PATH}' is a directory.${NC}"
   exit 1
 fi
 
 if ! [[ -f "${SCRIPT_PATH}" ]]; then
-  echo "filepath specified ${SCRIPT_PATH} is not correct. please try again later."
+  echo -e "${RED}'${SCRIPT_PATH}' is not a valid file.${NC}"
   exit 1
 fi
 
+echo -e "${YELLOW}Starting debug...${NC}\n"
 PS4='<DEBUG>:  ' bash -x "${SCRIPT_PATH}"
-
-echo "Debugging of ${SCRIPT_PATH} is complete "
+echo -e "\n${GREEN}Debugging complete for ${SCRIPT_PATH}.${NC}"
