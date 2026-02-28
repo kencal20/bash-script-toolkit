@@ -20,6 +20,7 @@ fi
 SCRIPT_PATH=${DIRECTORY_PATH}/${SCRIPT_NAME}
 
 touch "${SCRIPT_PATH}"
+echo "#!/usr/bin/env bash " >${SCRIPT_PATH}
 chmod u+x "${SCRIPT_PATH}"
 
 echo -e "${GREEN}Script has been created successfully.${NC}"
